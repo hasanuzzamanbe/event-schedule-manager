@@ -1,6 +1,6 @@
 <?php
 
-namespace speakers\Classes;
+namespace EventSpeechOrganizer\Classes;
 
 if (!defined('ABSPATH')) {
     exit;
@@ -14,6 +14,6 @@ class AdminApp
 {
     public function bootView()
     {
-        echo "<div id='speakers_app'></div>";
+        echo "<div id='event_speech_organizer_app'></div>";
     }
 }

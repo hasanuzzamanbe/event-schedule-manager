@@ -1,7 +1,7 @@
 <template>
   <div>
     <div style="display: flex; justify-content: flex-end">
-      <p style="margin-right: 12px">Person: {{ speakers.length }}</p>
+      <p style="margin-right: 12px">Person: {{ eventSpeechOrganizer.length }}</p>
 
       <!-- download csv -->
       <el-button
@@ -22,11 +22,11 @@
       >
     </div>
 
-    <div v-if="!speakers.length">No person in this list!</div>
-    <ul class="speakers">
+    <div v-if="!eventSpeechOrganizer.length">No person in this list!</div>
+    <ul class="eventSpeechOrganizer">
       <li
         class="speaker_applicant"
-        v-for="(speaker, i) in speakers"
+        v-for="(speaker, i) in eventSpeechOrganizer"
         :key="speaker.id"
       >
         <div class="profile-section">
@@ -110,7 +110,7 @@
         <div v-if="speaker.viewDesc">
           <p>{{ speaker.description }}</p>
           <p>{{ speaker.type }}</p>
-          <p>Co-speakers:{{ speaker.cospeakers }}</p>
+          <p>Co-eventSpeechOrganizer:{{ speaker.coeventSpeechOrganizer }}</p>
           <p>Audience: {{ speaker.audience }}</p>
           <p>Experience: {{ speaker.experience }}</p>
           <p class="action" @click="hideDesc(speaker)">hide ^</p>
@@ -175,11 +175,11 @@
             placeholder="Description"
           ></el-input>
         </el-form-item>
-        <el-form-item label="Co-speakers">
+        <el-form-item label="Co-eventSpeechOrganizer">
           <el-input
             type="textarea"
-            v-model="speakerNew.cospeakers"
-            placeholder="Co-speakers"
+            v-model="speakerNew.coeventSpeechOrganizer"
+            placeholder="Co-eventSpeechOrganizer"
           ></el-input>
         </el-form-item>
         <el-form-item label="audience">
@@ -218,7 +218,7 @@ export default {
         topic: '',
         description: '',
         type: '',
-        cospeakers: '',
+        coeventSpeechOrganizer: '',
         audience: '',
         experience: '',
         status: 'waiting'
@@ -227,7 +227,7 @@ export default {
     }
   },
   props: {
-    speakers: {
+    eventSpeechOrganizer: {
       type: Array,
       required: true
     }
@@ -244,7 +244,7 @@ export default {
     addOrUpdate () {
       if (this.speakerNew.id) {
         this.$post({
-          action: 'speakers_admin_ajax',
+          action: 'event_speech_organizer_admin_ajax',
           route: 'edit_applicant',
           data: this.speakerNew
         }).then(response => {
@@ -255,7 +255,7 @@ export default {
       }
 
       this.$post({
-        action: 'speakers_admin_ajax',
+        action: 'event_speech_organizer_admin_ajax',
         route: 'add_applicant',
         data: this.speakerNew
       }).then(response => {
@@ -265,7 +265,7 @@ export default {
     },
     downloadCSV () {
       let emails = []
-      this.speakers.forEach(speaker => {
+      this.eventSpeechOrganizer.forEach(speaker => {
         emails.push([speaker.name, speaker.email])
       })
 
@@ -294,7 +294,7 @@ export default {
     updateStatus (speaker, status) {
       this.$set(speaker, 'status', status)
       this.$post({
-        action: 'speakers_admin_ajax',
+        action: 'event_speech_organizer_admin_ajax',
         route: 'update_status',
         options: {
           id: speaker.id,

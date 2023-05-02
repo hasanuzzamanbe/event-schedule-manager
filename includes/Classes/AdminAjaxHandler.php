@@ -1,13 +1,15 @@
 <?php
 
-namespace speakers\Classes;
-use speakers\Classes\ApplicantModel;
-use speakers\Classes\SpeakerSlots;
+namespace EventSpeechOrganizer\Classes;
+
+use EventSpeechOrganizer\Classes\ApplicantModel;
+use EventSpeechOrganizer\Classes\SpeakerSlots;
+
 class AdminAjaxHandler
 {
     public function registerEndpoints()
     {
-        add_action('wp_ajax_speakers_admin_ajax', array($this, 'handleEndPoint'));
+        add_action('wp_ajax_event_speech_organizer_admin_ajax', array($this, 'handleEndPoint'));
     }
     public function handleEndPoint()
     {
@@ -26,10 +28,10 @@ class AdminAjaxHandler
         );
 
         if (isset($validRoutes[$route])) {
-            do_action('speakers/doing_ajax_forms_' . $route);
+            do_action('event_speech_organizer/doing_ajax_forms_' . $route);
             return $this->{$validRoutes[$route]}();
         }
-        do_action('speakers/admin_ajax_handler_catch', $route);
+        do_action('event_speech_organizer/admin_ajax_handler_catch', $route);
     }
 
     public function editApplicant()
@@ -38,7 +40,7 @@ class AdminAjaxHandler
         $applicantModel = new ApplicantModel();
         $applicantModel->update($applicant);
     }
-    
+
 
     public function addApplicant()
     {
@@ -54,8 +56,8 @@ class AdminAjaxHandler
     public function searchSpeakers()
     {
         $speakerModel = new ApplicantModel();
-        $speakers = $speakerModel->searchBy($_REQUEST['search_by']);
-        wp_send_json($speakers);
+        $eventSpeechOrganizer = $speakerModel->searchBy($_REQUEST['search_by']);
+        wp_send_json($eventSpeechOrganizer);
     }
 
     public function getSlots()
@@ -78,7 +80,7 @@ class AdminAjaxHandler
 
         $speakers = json_encode($slot['speakers']);
 
-        foreach($slot as $key => $value){
+        foreach ($slot as $key => $value) {
             $slot[$key] = sanitize_text_field($value);
         }
 
@@ -100,14 +102,13 @@ class AdminAjaxHandler
 
     public function saveSpeaker()
     {
-       $speakers = $_REQUEST['data'];
+        $speakers = $_REQUEST['data'];
 
         $speakerModel = new ApplicantModel();
 
-        foreach ($speakers as $speaker){
+        foreach ($speakers as $speaker) {
             $speakerModel->insert($speaker);
         }
-        
     }
 
     public function updateStatus()

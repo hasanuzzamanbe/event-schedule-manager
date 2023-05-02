@@ -1,6 +1,6 @@
 <?php
 
-namespace speakers\Classes;
+namespace EventSpeechOrganizer\Classes;
 
 if (!defined('ABSPATH')) {
     exit;
@@ -18,7 +18,7 @@ class SpeakerSlots
 
         $results = $wpdb->get_results($sql);
 
-        foreach($results as $key => $value){
+        foreach ($results as $key => $value) {
             $results[$key]->speakers = json_decode($value->speakers);
         }
 

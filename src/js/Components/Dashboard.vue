@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h1>Applications:</h1>
+    <h1>Applicants:</h1>
     <filter-nav></filter-nav>
-    <Speaker @fetch="fetch" :speakers="speakers"></Speaker>
+    <Speaker @fetch="fetch" :eventSpeechOrganizer="eventSpeechOrganizer"></Speaker>
   </div>
 </template>
 
@@ -14,7 +14,7 @@ export default {
   components: {},
   data () {
     return {
-      speakers: []
+      eventSpeechOrganizer: []
     }
   },
   components: {
@@ -24,13 +24,13 @@ export default {
   methods: {
     fetch () {
       this.$get({
-        action: 'speakers_admin_ajax',
+        action: 'event_speech_organizer_admin_ajax',
         route: 'get_data'
         // options: {
         // //   not_status: ['rejected', 'approved']
         // }
       }).then(response => {
-        this.speakers = response.data
+        this.eventSpeechOrganizer = response.data
       })
     }
   },
@@ -53,6 +53,9 @@ li.speaker_applicant {
   max-width: 444px;
   flex: 0 1 auto;
   width: 100%;
+  border: 1px solid #ccc;
+  padding: 12px;
+  border-radius: 6px;
 }
 
 .speaker-menu {
@@ -69,7 +72,7 @@ li.speaker_applicant {
   }
 }
 
-.speakers {
+.eventSpeechOrganizer {
   display: flex;
   flex-wrap: wrap;
   list-style: none;

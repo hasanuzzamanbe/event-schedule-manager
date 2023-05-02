@@ -1,6 +1,6 @@
-# WordPress boilerplate plugin with Vue.js
+# Event speech organizer
 
-#### A simple boilerplate plugin for WordPress using vue js.
+#### A wordpress plugin to manage speakers of wordpress events
 
 ## How to use:
 

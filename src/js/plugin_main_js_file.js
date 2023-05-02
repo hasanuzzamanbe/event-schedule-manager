@@ -4,7 +4,7 @@ Vue.use(Router);
 
 import { applyFilters, addFilter, addAction, doAction } from '@wordpress/hooks';
 
-export default class speakers {
+export default class eventSpeechOrganizer {
     constructor() {
         this.applyFilters = applyFilters;
         this.addFilter = addFilter;
@@ -15,28 +15,28 @@ export default class speakers {
     }
 
     $publicAssets(path){
-        return (window.speakersAdmin.assets_url + path);
+        return (window.eventSpeechOrganizerAdmin.assets_url + path);
     }
 
     $get(options) {
-        return window.jQuery.get(window.speakersAdmin.ajaxurl, options);
+        return window.jQuery.get(window.eventSpeechOrganizerAdmin.ajaxurl, options);
     }
 
     $adminGet(options) {
-        options.action = 'speakers_admin_ajax';
-        return window.jQuery.get(window.speakersAdmin.ajaxurl, options);
+        options.action = 'event_speech_organizer_admin_ajax';
+        return window.jQuery.get(window.eventSpeechOrganizerAdmin.ajaxurl, options);
     }
 
     $post(options) {
-        return window.jQuery.post(window.speakersAdmin.ajaxurl, options);
+        return window.jQuery.post(window.eventSpeechOrganizerAdmin.ajaxurl, options);
     }
 
     $adminPost(options) {
-        options.action = 'speakers_admin_ajax';
-        return window.jQuery.post(window.speakersAdmin.ajaxurl, options);
+        options.action = 'event_speech_organizer_admin_ajax';
+        return window.jQuery.post(window.eventSpeechOrganizerAdmin.ajaxurl, options);
     }
 
     $getJSON(options) {
-        return window.jQuery.getJSON(window.speakersAdmin.ajaxurl, options);
+        return window.jQuery.getJSON(window.eventSpeechOrganizerAdmin.ajaxurl, options);
     }
 }

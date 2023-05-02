@@ -225,13 +225,15 @@ export default {
         name: '',
         talk_type: '',
         from: '',
-        to: ''
+        to: '',
+        speakers: []
       },
       form: {
         name: '',
         talk_type: '',
         from: '',
-        to: ''
+        to: '',
+        speakers: []
       },
       talkTypes: [
         {
@@ -266,7 +268,7 @@ export default {
         }
       ],
       slots: [],
-      speakers: window.speakersAdmin.speakers
+      speakers: window.eventSpeechOrganizerAdmin.speakers
     }
   },
   methods: {
@@ -290,7 +292,7 @@ export default {
     },
     searchTitle (queryString, cb) {
       this.$get({
-        action: 'speakers_admin_ajax',
+        action: 'event_speech_organizer_admin_ajax',
         route: 'search_speakers',
         search_by: queryString
       }).then(response => {
@@ -303,7 +305,7 @@ export default {
     },
     addNew () {
       this.$post({
-        action: 'speakers_admin_ajax',
+        action: 'event_speech_organizer_admin_ajax',
         route: 'save_slots',
         data: this.form
       }).then(response => {
@@ -324,7 +326,7 @@ export default {
     },
     remove (slot) {
       this.$post({
-        action: 'speakers_admin_ajax',
+        action: 'event_speech_organizer_admin_ajax',
         route: 'delete_slot',
         id: slot.id
       }).then(response => {
@@ -337,7 +339,7 @@ export default {
     },
     fetch () {
       this.$get({
-        action: 'speakers_admin_ajax',
+        action: 'event_speech_organizer_admin_ajax',
         route: 'get_slots'
         // options: {
         // //   not_status: ['rejected', 'approved']

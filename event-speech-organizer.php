@@ -1,14 +1,14 @@
 <?php
 
 /*
-Plugin Name: speakers
+Plugin Name: Event Speech Organizer
 Plugin URI: #
-Description: A WordPress boilerplate plugin with Vue js.
+Description: A WordPress plugin to manage event eventSpeechOrganizer and schedule event speech
 Version: 1.0.0
 Author: #
 Author URI: #
 License: A "Slug" license name e.g. GPL2
-Text Domain: textdomain
+Text Domain: event_speech_organizer
 */
 
 
@@ -32,15 +32,15 @@ Text Domain: textdomain
 if (!defined('ABSPATH')) {
     exit;
 }
-if (!defined('SPEAKERS_VERSION')) {
-    define('SPEAKERS_VERSION_LITE', true);
-    define('SPEAKERS_VERSION', '1.1.0');
-    define('SPEAKERS_MAIN_FILE', __FILE__);
-    define('SPEAKERS_URL', plugin_dir_url(__FILE__));
-    define('SPEAKERS_DIR', plugin_dir_path(__FILE__));
-    define('SPEAKERS_UPLOAD_DIR', '/speakers');
+if (!defined('EVENT_SPEECH_ORGANIZER_VERSION')) {
+    define('EVENT_SPEECH_ORGANIZER_VERSION_LITE', true);
+    define('EVENT_SPEECH_ORGANIZER_VERSION', '1.1.0');
+    define('EVENT_SPEECH_ORGANIZER_MAIN_FILE', __FILE__);
+    define('EVENT_SPEECH_ORGANIZER_URL', plugin_dir_url(__FILE__));
+    define('EVENT_SPEECH_ORGANIZER_DIR', plugin_dir_path(__FILE__));
+    define('EVENT_SPEECH_ORGANIZER_UPLOAD_DIR', '/eventSpeechOrganizer');
 
-    class speakers
+    class EventSpeechOrganizer
     {
         public function boot()
         {
@@ -51,42 +51,42 @@ if (!defined('SPEAKERS_VERSION')) {
 
         public function adminHooks()
         {
-            require SPEAKERS_DIR . 'includes/autoload.php';
+            require EVENT_SPEECH_ORGANIZER_DIR . 'includes/autoload.php';
 
             //Register Admin menu
-            $menu = new \speakers\Classes\Menu();
+            $menu = new \EventSpeechOrganizer\Classes\Menu();
             $menu->register();
 
             // Top Level Ajax Handlers
-            $ajaxHandler = new \speakers\Classes\AdminAjaxHandler();
+            $ajaxHandler = new \EventSpeechOrganizer\Classes\AdminAjaxHandler();
             $ajaxHandler->registerEndpoints();
 
-            add_action('speakers/render_admin_app', function () {
-                $adminApp = new \speakers\Classes\AdminApp();
+            add_action('event_speech_organizer/render_admin_app', function () {
+                $adminApp = new \EventSpeechOrganizer\Classes\AdminApp();
                 $adminApp->bootView();
             });
         }
 
         public function textDomain()
         {
-            load_plugin_textdomain('speakers', false, basename(dirname(__FILE__)) . '/languages');
+            load_plugin_textdomain('event-speech-organizer', false, basename(dirname(__FILE__)) . '/languages');
         }
     }
 
     add_action('plugins_loaded', function () {
-        (new speakers())->boot();
+        (new EventSpeechOrganizer())->boot();
     });
 
     register_activation_hook(__FILE__, function ($newWorkWide) {
-        require_once(SPEAKERS_DIR . 'includes/Classes/Activator.php');
-        $activator = new \speakers\Classes\Activator();
+        require_once(EVENT_SPEECH_ORGANIZER_DIR . 'includes/Classes/Activator.php');
+        $activator = new \EventSpeechOrganizer\Classes\Activator();
         $activator->migrateDatabases($newWorkWide);
     });
 
     // disabled admin-notice on dashboard
     add_action('admin_init', function () {
         $disablePages = [
-            'speakers.php',
+            'eventSpeechOrganizer.php',
         ];
         if (isset($_GET['page']) && in_array($_GET['page'], $disablePages)) {
             remove_all_actions('admin_notices');

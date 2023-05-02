@@ -1,6 +1,6 @@
 <?php
 
-namespace speakers\Classes;
+namespace EventSpeechOrganizer\Classes;
 
 if (!defined('ABSPATH')) {
     exit;
@@ -30,7 +30,7 @@ class ApplicantModel
 
         if (isset($options['not_status'])) {
             $exc = '';
-            foreach($options['not_status'] as  $value){
+            foreach ($options['not_status'] as $value) {
                 $exc .= "'" . sanitize_text_field($value) . "',";
             }
             $exc = rtrim($exc, ",");
@@ -39,7 +39,7 @@ class ApplicantModel
 
         if (isset($options['status'])) {
             $List = implode(', ', $options['status']);
-            $sql .= " WHERE status IN ('" .$List . "' )";
+            $sql .= " WHERE status IN ('" . $List . "' )";
         }
 
         $sql = rtrim($sql, "AND");
@@ -61,7 +61,7 @@ class ApplicantModel
         $results = $wpdb->get_results($sql);
 
         $suggestion = array();
-        foreach($results as $key => $value){
+        foreach ($results as $key => $value) {
             $suggestion[] = array(
                 'label' => $value->topic,
                 'value' => $value->topic
@@ -69,15 +69,14 @@ class ApplicantModel
         }
 
         return $suggestion;
-
     }
 
     public function updateStatus($query)
     {
-       
+
         global $wpdb;
         $table_name = $wpdb->prefix . 'speakers';
-        
+
         $data = array(
             'status' => sanitize_text_field($query['status'])
         );
@@ -118,7 +117,6 @@ class ApplicantModel
         );
 
         $wpdb->update($table_name, $data, $where);
-
     }
 
     public function insert($speaker)
@@ -145,10 +143,10 @@ class ApplicantModel
             'ip' => sanitize_text_field($speaker['ip'])
         );
 
-       $wpdb->insert($table_name, $data);
+        $wpdb->insert($table_name, $data);
 
-        if ( $wpdb->last_error) {
-            dd( $wpdb->last_error);
+        if ($wpdb->last_error) {
+            dd($wpdb->last_error);
         }
     }
 }

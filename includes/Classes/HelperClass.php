@@ -1,6 +1,6 @@
 <?php
 
-namespace speakers\Classes;
+namespace EventSpeechOrganizer\Classes;
 
 class HelperClass
 {

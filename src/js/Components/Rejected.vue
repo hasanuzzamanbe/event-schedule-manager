@@ -2,7 +2,7 @@
   <div>
     <h1>Rejected</h1>
     <filter-nav></filter-nav>
-    <speaker @fetch="fetch" :speakers="speakers"></speaker>
+    <speaker @fetch="fetch" :eventSpeechOrganizer="eventSpeechOrganizer"></speaker>
   </div>
 </template>
 <script>
@@ -12,7 +12,7 @@ export default {
   name: 'Rejected',
   data () {
     return {
-      speakers: []
+      eventSpeechOrganizer: []
     }
   },
     components: {
@@ -22,13 +22,13 @@ export default {
   methods: {
     fetch () {
       this.$get({
-        action: 'speakers_admin_ajax',
+        action: 'event_speech_organizer_admin_ajax',
         route: 'get_data',
         options: {
           status: ['rejected']
         }
       }).then(response => {
-        this.speakers = response.data
+        this.eventSpeechOrganizer = response.data
       })
     }
   },

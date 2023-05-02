@@ -3,14 +3,14 @@
 /**
  * Autoloader
  *
- * @package speakers
+ * @package eventSpeechOrganizer
  */
 
 if (!defined('ABSPATH')) {
     exit;
 }
 include 'global_functions.php';
-if (!function_exists('speakersAutoload')) {
+if (!function_exists('eventSpeechOrganizer')) {
     /**
      * Plugin autoloader.
      *
@@ -22,10 +22,10 @@ if (!function_exists('speakersAutoload')) {
      *
      * @param $class
      */
-    function speakersAutoload($class)
+    function eventSpeechOrganizer($class)
     {
         // Do not load unless in plugin domain.
-        $namespace = 'speakers';
+        $namespace = 'EventSpeechOrganizer';
         if (strpos($class, $namespace) !== 0) {
             return;
         }
@@ -44,5 +44,5 @@ if (!function_exists('speakersAutoload')) {
         }
     }
     // Register the autoloader.
-    spl_autoload_register('speakersAutoload');
+    spl_autoload_register('eventSpeechOrganizer');
 }

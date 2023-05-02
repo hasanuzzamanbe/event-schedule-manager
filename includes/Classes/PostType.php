@@ -1,13 +1,13 @@
 <?php
 
-namespace speakers\Classes;
+namespace EventSpeechOrganizer\Classes;
 
 if (!defined('ABSPATH')) {
     exit;
 }
 
 /**
- * Register and initialize custom post type for speakers
+ * Register and initialize custom post type for eventSpeechOrganizer
  * @since 1.0.0
  */
 
@@ -25,6 +25,6 @@ class PostType
             'public'          => false,
             'show_ui'         => false,
         );
-        register_post_type('speakers', $args);
+        register_post_type('eventSpeechOrganizer', $args);
     }
 }

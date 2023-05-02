@@ -1,6 +1,6 @@
 <?php
 
-namespace speakers\Classes;
+namespace EventSpeechOrganizer\Classes;
 
 class AccessControl
 {
@@ -8,8 +8,8 @@ class AccessControl
     {
         $menuPermissions = array(
             'manage_options',
-            'speakers_full_access',
-            'speakers_can_view_menus'
+            'eventSpeechOrganizer_full_access',
+            'eventSpeechOrganizer_can_view_menus'
         );
         foreach ($menuPermissions as $menuPermission) {
             if (current_user_can($menuPermission)) {
