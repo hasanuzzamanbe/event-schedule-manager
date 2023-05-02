@@ -8,8 +8,6 @@
 </template>
 <style lang="scss">
 .speaker_filter_nav {
-  display: flex;
-  justify-content: center;
   a {
     padding: 3px 18px;
     border: 1px solid;
