@@ -1,6 +1,5 @@
 <template>
     <div>
-        <h1>Waiting</h1>
         <filter-nav></filter-nav>
         <speaker @fetch="fetch" :eventSpeechOrganizer="eventSpeechOrganizer"></speaker>
     </div>

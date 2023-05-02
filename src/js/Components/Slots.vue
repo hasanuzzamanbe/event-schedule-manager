@@ -1,9 +1,12 @@
 <template>
   <div>
+    <div class="speaker-menu">
+        <router-link :to="{ params: { id: eventId }, name: 'applicants' }">Applicants</router-link>
+        <router-link :to="{ params: { id: eventId }, name: 'slots' }">Slots</router-link>
+    </div>
     <div class="add_talk">
       <h1>Add Slots</h1>
       <hr />
-
       <div
         class="slots_wrapper"
         style="display: flex; justify-content: space-around"
@@ -220,6 +223,7 @@
 export default {
   data () {
     return {
+      eventId: '',
       dialogVisible: false,
       form_mock: {
         name: '',
@@ -350,7 +354,8 @@ export default {
     }
   },
   mounted () {
-    this.fetch()
+    this.fetch();
+    this.eventId = this.$route.params.id;
   }
 }
 </script>

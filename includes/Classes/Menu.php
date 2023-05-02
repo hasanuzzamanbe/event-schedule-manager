@@ -18,7 +18,7 @@ class Menu
             return;
         }
 
-        $title = __('Applicants', 'textdomain');
+        $title = __('Events', 'textdomain');
         global $submenu;
         add_menu_page(
             $title,
@@ -31,25 +31,25 @@ class Menu
         );
 
         $submenu['event_speech_organizer.php']['applicants'] = array(
-            __('Applicants', 'textdomain'),
+            __('My events', 'textdomain'),
             $menuPermission,
             'admin.php?page=event_speech_organizer.php#/',
         );
-        $submenu['event_speech_organizer.php']['selected'] = array(
-            __('Selected', 'textdomain'),
-            $menuPermission,
-            'admin.php?page=event_speech_organizer.php#/selected',
-        );
-        $submenu['event_speech_organizer.php']['waiting'] = array(
-            __('Waiting', 'textdomain'),
-            $menuPermission,
-            'admin.php?page=event_speech_organizer.php#/waiting',
-        );
-        $submenu['event_speech_organizer.php']['rejected'] = array(
-            __('Rejected', 'textdomain'),
-            $menuPermission,
-            'admin.php?page=event_speech_organizer.php#/rejected',
-        );
+        // $submenu['event_speech_organizer.php']['selected'] = array(
+        //     __('Selected', 'textdomain'),
+        //     $menuPermission,
+        //     'admin.php?page=event_speech_organizer.php#/selected',
+        // );
+        // $submenu['event_speech_organizer.php']['waiting'] = array(
+        //     __('Waiting', 'textdomain'),
+        //     $menuPermission,
+        //     'admin.php?page=event_speech_organizer.php#/waiting',
+        // );
+        // $submenu['event_speech_organizer.php']['rejected'] = array(
+        //     __('Rejected', 'textdomain'),
+        //     $menuPermission,
+        //     'admin.php?page=event_speech_organizer.php#/rejected',
+        // );
     }
 
     public function enqueueAssets()
